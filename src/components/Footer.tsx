@@ -1,3 +1,5 @@
+import {Package} from "lucide-react";
+
 const Footer = () => {
     return (
         <footer className="bg-white pt-20 pb-10 border-t border-slate-200">
@@ -6,21 +8,20 @@ const Footer = () => {
                     <div className="col-span-2 lg:col-span-2 space-y-6">
                         <a href="#" className="flex items-center gap-2 font-bold tracking-tight text-slate-900">
               <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white shadow-lg">
-                🛍
+                🛍<Package size={20} />
               </span>
                             <span className="text-xl tracking-tighter uppercase font-black">LITE.SHOP</span>
                         </a>
+
 
                         <p className="max-w-xs text-sm text-slate-500 leading-relaxed font-medium">
                             Modern e-commerce experience built for speed and elegance.
                         </p>
 
                         <div className="flex items-center gap-4">
-                            <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-600">
-                                T
+                            <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-600" >
                             </a>
                             <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-slate-100 text-slate-600">
-                                I
                             </a>
                         </div>
                     </div>
