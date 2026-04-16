@@ -1,52 +1,43 @@
+import { ArrowDownUp } from "lucide-react";
 import ProductCard from "./ProductCard";
 
-const ProductGrid = () => {
+type Product = {
+    id: number;
+    title: string;
+    price: string;
+    image: string;
+};
+
+type ProductGridProps = {
+    products: Product[];
+};
+
+const ProductGrid = ({ products }: ProductGridProps) => {
     return (
         <section className="lg:col-span-9">
-            <div className="border border-slate-200 rounded-[1.25rem] bg-slate-50/50 p-5 shadow-sm">
+            <div className="rounded-xl border bg-white p-5">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <h1 className="text-xl font-bold tracking-tight text-slate-900">
-                        Recommended for you
-                    </h1>
+                    <h2 className="text-xl font-bold">Recommended for you</h2>
 
-                    <select className="rounded-[0.75rem] border border-slate-200 bg-white py-2 px-3 text-sm text-slate-950 outline-none">
-                        <option>Newest</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
-                        <option>Best Selling</option>
-                    </select>
+                    <div className="flex items-center gap-2">
+                        <ArrowDownUp size={16} className="text-slate-500" />
+                        <select className="rounded-lg border bg-white px-3 py-2 text-sm outline-none">
+                            <option>Newest</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div className="mt-5 h-px bg-slate-100"></div>
-
                 <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <ProductCard
-                        image="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&q=80&w=800"
-                        category="Outerwear"
-                        title="Technical Shell Jacket"
-                        status="In Stock • Ships in 2 days"
-                        oldPrice="1,450 kr"
-                        price="890 kr"
-                        badge="Discount"
-                    />
-
-                    <ProductCard
-                        image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800"
-                        category="Footwear"
-                        title="Speedster Running Shoes"
-                        status="Only 4 items left"
-                        price="1,200 kr"
-                        badge="Limited"
-                    />
-
-                    <ProductCard
-                        image="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800"
-                        category="Accessories"
-                        title="Minimalist Quartz Watch"
-                        status="Back in stock next week"
-                        price="1,850 kr"
-                        badge="Sold Out"
-                    />
+                    {products.map((product) => (
+                        <ProductCard
+                            key={product.id}
+                            title={product.title}
+                            price={product.price}
+                            image={product.image}
+                        />
+                    ))}
                 </div>
             </div>
         </section>
