@@ -1,54 +1,48 @@
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import ProductGrid from "./components/ProductGrid";
+import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
+import { products } from "./data/products";
 
-const App = () => {
-    const categories = [
-        "All Products",
-        "Outerwear",
-        "Footwear",
-        "Accessories",
-    ];
+const categories = ["All Products", "Outerwear", "Footwear", "Accessories"];
 
-    const products = [
-        {
-            id: 1,
-            title: "Technical Shell Jacket",
-            price: "890 kr",
-            image:
-                "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&q=80&w=800",
-        },
-        {
-            id: 2,
-            title: "Speedster Running Shoes",
-            price: "1,200 kr",
-            image:
-                "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800",
-        },
-        {
-            id: 3,
-            title: "Minimalist Quartz Watch",
-            price: "1,850 kr",
-            image:
-                "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800",
-        },
-    ];
-
+function App() {
     return (
-        <div className="min-h-screen bg-slate-100/30 text-slate-950">
-            <Header brand="LITE.SHOP" />
+        <div className="min-h-screen bg-slate-100/30 text-slate-950 antialiased font-sans">
+            <Header />
 
-            <main className="mx-auto max-w-7xl px-4 py-6">
+            <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
                     <Sidebar categories={categories} />
-                    <ProductGrid products={products} />
+
+                    <section className="lg:col-span-9">
+                        <div className="border border-slate-200 rounded-[1.25rem] bg-slate-50/50 p-5 shadow-sm">
+                            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                <h1 className="text-xl font-bold tracking-tight text-slate-900">
+                                    Recommended for you
+                                </h1>
+
+                                <select className="border border-slate-200 bg-white rounded-xl py-2 px-3 text-sm text-slate-950">
+                                    <option>Newest</option>
+                                    <option>Price: Low to High</option>
+                                    <option>Price: High to Low</option>
+                                    <option>Best Selling</option>
+                                </select>
+                            </div>
+
+                            <div className="mt-5 h-px bg-slate-100"></div>
+
+                            <ProductGrid products={products} />
+                        </div>
+                    </section>
                 </div>
             </main>
 
-            <Footer brand="LITE.SHOP" />
+            <Newsletter />
+            <Footer />
         </div>
     );
-};
+}
 
 export default App;
