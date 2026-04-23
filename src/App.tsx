@@ -4,29 +4,40 @@ import ProductGrid from "./components/ProductGrid";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import { products } from "./data/products";
-import { useState} from "react";
-
+import { useState } from "react";
 
 const categories = ["All Products", "Outerwear", "Footwear", "Accessories"];
 
 function App() {
-// Add state and pass props to header
-const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState("All Products");
 
+    const filteredProducts = products.filter((product) => {
+        const matchesSearch = product.name
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase());
 
-//useEffect to filter products based on search term
-const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-);
+        const matchesCategory =
+            selectedCategory === "All Products" ||
+            product.category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+    });
+
     return (
         <div className="min-h-screen bg-slate-100/30 text-slate-950 antialiased font-sans">
             <Header
-            searchTerm={searchTerm}
-            onSearchChange={setSearchTerm}/>
+                searchTerm={searchTerm}
+                onSearchChange={setSearchTerm}
+            />
 
             <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-                    <Sidebar categories={categories} />
+                    <Sidebar
+                        categories={categories}
+                        selectedCategory={selectedCategory}
+                        onCategoryChange={setSelectedCategory}
+                    />
 
                     <section className="lg:col-span-9">
                         <div className="border border-slate-200 rounded-[1.25rem] bg-slate-50/50 p-5 shadow-sm">
