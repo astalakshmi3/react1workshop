@@ -5,13 +5,20 @@ import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import { products } from "./data/products";
 import { useState } from "react";
+import type {Product} from "./types/Product.ts";
 
 const categories = ["All Products", "Outerwear", "Footwear", "Accessories"];
 
 function App() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All Products");
+    // How many products were added
+    const [cartCount, setCardCount]= useState<Product [] > ([]);
 
+    // Create add to cart function
+    const handleAddToCart = (product : Product) => {
+        setCardCount((prevCount) => [...prevCount, product]);
+    };
     const filteredProducts = products.filter((product) => {
         const matchesSearch = product.name
             .toLowerCase()
@@ -23,12 +30,31 @@ function App() {
 
         return matchesSearch && matchesCategory;
     });
-
+    // This approach ensures that the filtering logic is straightforward and efficient, without the need for an additional state variable to hold the filtered products.
+    // The UI will automatically update whenever the search term or selected category changes, providing a seamless user experience.
+    // useEffect(() => {
+    // start with all products and apply filters based on search term and selected category
+     //       let result = allProducts;
+    // filter by category
+       //     if (selectedCategory !== "All") {
+     //           result = result.filter((product) => product.category === selectedCategory);
+        //    }
+// filter by search text
+          //  if (searchTerm.trim() !== "") {
+            //    result = result.filter((product) =>
+              //      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+               // );
+           // }
+// update the state and save
+           // setFilteredProducts(result);
+        // }, [searchTerm, selectedCategory]);
     return (
         <div className="min-h-screen bg-slate-100/30 text-slate-950 antialiased font-sans">
             <Header
                 searchTerm={searchTerm}
                 onSearchChange={setSearchTerm}
+                // pass cart count to header
+                cartCount = {cartCount.length}
             />
 
             <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -56,7 +82,8 @@ function App() {
 
                             <div className="mt-5 h-px bg-slate-100"></div>
 
-                            <ProductGrid products={filteredProducts} />
+                            <ProductGrid products={filteredProducts}
+                            onAddToCart = {handleAddToCart} />
                         </div>
                     </section>
                 </div>

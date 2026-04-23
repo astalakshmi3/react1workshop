@@ -3,9 +3,10 @@ import { Heart, Eye, Plus, Star } from "lucide-react";
 
 type ProductCardProps = {
     product: Product;
+    onAddToCart: (product: Product) => void;
 };
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
     return (
         <article className="border border-slate-200 rounded-[1.25rem] bg-white p-3 transition-all duration-300 hover:border-blue-400 hover:shadow-xl hover:-translate-y-1.5 group">
             <div className="relative overflow-hidden rounded-2xl bg-slate-100">
@@ -38,6 +39,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                     <p className="text-[10px] font-black uppercase tracking-[0.15em] text-blue-600/70">
                         {product.category}
                     </p>
+
                     <div className="flex items-center gap-1">
                         <Star size={10} className="fill-amber-400 text-amber-400" />
                         <span className="text-[10px] font-bold text-slate-400">
@@ -65,12 +67,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
                     </div>
 
                     <button
-                        className={`inline-flex h-10 items-center justify-center rounded-xl px-5 text-xs font-bold ${
+                        onClick={() => onAddToCart(product)}
+                        disabled={!product.inStock}
+                        className={`inline-flex h-10 items-center justify-center rounded-xl px-5 text-xs font-bold transition-all duration-300 ${
                             product.inStock
                                 ? "bg-slate-900 text-white hover:bg-blue-600"
                                 : "bg-slate-100 text-slate-400 cursor-not-allowed"
                         }`}
-                        disabled={!product.inStock}
                     >
                         {product.inStock ? "Add to cart" : "Notify Me"}
                     </button>

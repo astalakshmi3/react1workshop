@@ -1,11 +1,13 @@
 import {  Package } from "lucide-react";
 import { Menu, Search, Sparkles,Shirt,ShoppingBag ,User, Tag } from "lucide-react";
-// receive props
+//  update or add in props
 type HeaderProps = {
         searchTerm: string;
         onSearchChange: (searchTerm: string) => void;
+        cartCount: number;
 };
-const Header = ({searchTerm, onSearchChange } :HeaderProps  ) => {
+// receive
+const Header = ({searchTerm, onSearchChange, cartCount} :HeaderProps  ) => {
     return (
         <header className="sticky top-0 z-40 border-b border-blue-700/30 bg-blue-600 shadow-lg shadow-blue-900/10">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -41,8 +43,14 @@ const Header = ({searchTerm, onSearchChange } :HeaderProps  ) => {
                             <Search size={16} className="absolute left-3.5 top-3 text-blue-200" />
                         </div>
 
-                        <button className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/30 text-blue-50 border border-blue-400/20">
+                        <button className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/30 text-blue-50 border border-blue-400/20">
                             <ShoppingBag size={20} />
+                            {
+                                cartCount > 0 && (
+                                    <span className={"absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-pink-600 text-xs text-blue-600 font-bold"}>
+                                        {cartCount}
+                                    </span> )
+                            }
                         </button>
 
                         <button className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/30 text-blue-50 border border-blue-400/20">
