@@ -1,6 +1,11 @@
 import {  Package } from "lucide-react";
 import { Menu, Search, Sparkles,Shirt,ShoppingBag ,User, Tag } from "lucide-react";
-const Header = () => {
+// receive props
+type HeaderProps = {
+        searchTerm: string;
+        onSearchChange: (searchTerm: string) => void;
+};
+const Header = ({searchTerm, onSearchChange } :HeaderProps  ) => {
     return (
         <header className="sticky top-0 z-40 border-b border-blue-700/30 bg-blue-600 shadow-lg shadow-blue-900/10">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -29,6 +34,8 @@ const Header = () => {
                             <input
                                 type="text"
                                 placeholder="Search products..."
+                                value={searchTerm}
+                                onChange={(e) => onSearchChange(e.target.value)}
                                 className="h-10 w-48 rounded-xl bg-blue-500/30 pl-10 pr-4 text-xs text-white placeholder:text-blue-200/50 border border-blue-400/20 outline-none"
                             />
                             <Search size={16} className="absolute left-3.5 top-3 text-blue-200" />
