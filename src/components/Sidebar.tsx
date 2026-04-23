@@ -1,3 +1,5 @@
+import {Filter} from "lucide-react";
+
 type SidebarProps = {
     categories: string[];
 };
@@ -7,7 +9,8 @@ const Sidebar = ({ categories }: SidebarProps) => {
         <aside className="lg:col-span-3 lg:sticky lg:top-20 self-start">
             <div className="border border-slate-200 rounded-[1.25rem] bg-slate-50/50 p-5 shadow-sm">
                 <section className="space-y-4">
-                    <h2 className="text-sm font-bold text-slate-900">Categories</h2>
+                    <h2 className="text-sm font-bold text-slate-900">
+                        <Filter />Categories</h2>
 
                     <div className="space-y-3">
                         {categories.map((category) => (

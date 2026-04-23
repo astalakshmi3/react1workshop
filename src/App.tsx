@@ -4,18 +4,25 @@ import ProductGrid from "./components/ProductGrid";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import { products } from "./data/products";
-import {useState} from "react";
+import { useState} from "react";
+
 
 const categories = ["All Products", "Outerwear", "Footwear", "Accessories"];
 
 function App() {
 // Add state and pass props to header
-const [searchTerm, setSearchTeam] = useState("");
+const [searchTerm, setSearchTerm] = useState("");
+
+
+//useEffect to filter products based on search term
+const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
     return (
         <div className="min-h-screen bg-slate-100/30 text-slate-950 antialiased font-sans">
             <Header
             searchTerm={searchTerm}
-            onSearchChange={setSearchTeam}/>
+            onSearchChange={setSearchTerm}/>
 
             <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
@@ -38,7 +45,7 @@ const [searchTerm, setSearchTeam] = useState("");
 
                             <div className="mt-5 h-px bg-slate-100"></div>
 
-                            <ProductGrid products={products} />
+                            <ProductGrid products={filteredProducts} />
                         </div>
                     </section>
                 </div>

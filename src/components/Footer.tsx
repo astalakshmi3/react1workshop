@@ -1,3 +1,5 @@
+import {Package2, User2, Heart, ShoppingBag, Sparkle, Star, Truck} from "lucide-react";
+
 const Footer = () => {
     return (
         <footer className="bg-white pt-20 pb-10 border-t border-slate-200">
@@ -15,20 +17,28 @@ const Footer = () => {
                     <div className="space-y-6">
                         <h4 className="text-xs font-black uppercase tracking-[0.2em] text-slate-900">Shop</h4>
                         <ul className="space-y-4 text-sm font-bold text-slate-500">
-                            <li><a href="#">New Arrival</a></li>
-                            <li><a href="#">Best Sellers</a></li>
-                            <li><a href="#">Men Collection</a></li>
-                            <li><a href="#">Women Collection</a></li>
+                            <li><a href="#" className="flex items-center gap-2 hover:text-white">
+                                <Sparkle size={16}/>New Arrival</a></li>
+                            <li><a href="#" className="flex items-center gap-2 hover:text-white">
+                                <Star size={16}/>Best Sellers</a></li>
+                            <li><a href="#" className="flex items-center gap-2 hover:text-white">
+                                <User2 size={16}/>Men Collection</a></li>
+                            <li><a href="#" className="flex items-center gap-2 hover:text-white">
+                                <Heart size={16}/>Women Collection</a></li>
                         </ul>
                     </div>
 
                     <div className="space-y-6">
                         <h4 className="text-xs font-black uppercase tracking-[0.2em] text-slate-900">Support</h4>
                         <ul className="space-y-4 text-sm font-bold text-slate-500">
-                            <li><a href="#">Order Status</a></li>
-                            <li><a href="#">Shipping Policy</a></li>
-                            <li><a href="#">Returns & Exchanges</a></li>
-                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#" className="flex items-center gap-2 hover:text-white">
+                                <Heart size={16}/>Order Status</a></li>
+                            <li><a href="#" className="flex items-center gap-2 hover:text-white">
+                                <ShoppingBag size={16}/>Shipping Policy</a></li>
+                            <li><a href="#" className="flex items-center gap-2 hover:text-white">
+                                <Truck size={16}/>Returns & Exchanges</a></li>
+                            <li><a href="#" className="flex items-center gap-2 hover:text-white">
+                                <Package2 size = {18}/>FAQs</a></li>
                         </ul>
                     </div>
                 </div>
