@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import { products } from "./data/products";
 import { useState } from "react";
 import type {Product} from "./types/Product.ts";
+import {useTheme}  from "./context/ThemeContext.tsx";
 
 const categories = ["All Products", "Outerwear", "Footwear", "Accessories"];
 
@@ -14,6 +15,7 @@ function App() {
     const [selectedCategory, setSelectedCategory] = useState("All Products");
     // How many products were added
     const [cartCount, setCardCount]= useState<Product [] > ([]);
+    const { theme} = useTheme();
 
     // Create add to cart function
     const handleAddToCart = (product : Product) => {
@@ -49,6 +51,8 @@ function App() {
            // setFilteredProducts(result);
         // }, [searchTerm, selectedCategory]);
     return (
+        <div className={`${theme === "dark" ? "dark" : "bg-slate-900 text-white min-h-screen"}`}>
+            <h1> Hello </h1>
         <div className="min-h-screen bg-slate-100/30 text-slate-950 antialiased font-sans">
             <Header
                 searchTerm={searchTerm}
@@ -92,6 +96,8 @@ function App() {
             <Newsletter />
             <Footer />
         </div>
+        </div>
+
     );
 }
 
